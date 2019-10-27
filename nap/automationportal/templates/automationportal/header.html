@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Network Automation Portal</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+
+        <!--load css and js files from bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel='stylesheet' href="{% static 'css/main.css' %}" type='text/css'>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+        <style type="text/css">
+            html,
+            body {
+                height:100%
+            }
+        </style>
+    </head>
+
+    <body class="body" style="background-color:#fff">
+
+        <!--Main Page Container-->
+        <div class="container-fluid" style="min-height:90%; width:100%; ">
+            <!--Logo Header Bar-->
+            <div class="row">
+                <div class="col-sm-2" style="background-color: #a51417; "></div>
+                <div class="col-sm-10" style="background-color: #a51417; height:43px; ">
+                    <a href="/"><img src="{% static 'automationportal/img/1linerev(RGB).svg' %}" class="responsive-img" style="max-height:36px; padding-top:10px; padding-left:7px;" alt="logo"></a></div>
+            </div>
+            <!--Page Title Header Bar-->
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-9" style="height: 65px;">
+                        <h3 style="padding-top:18px; padding-left:7px; font-family:baskerville">Network Automation Portal</h3></div>
+                <div class="col-sm-1" style="height: 65px; padding-top: 20px; padding-right: 20px; ">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" role="button" onclick="window.location.href='https://connect.wustl.edu/logout/'" style="height:27px; width:80px; padding:0;">Log Out</button></div>
+            </div>
+            <!--Navigation Bar-->
+            <div class="row">
+                <div class="col-sm-2" style="background-color:#555; padding-top:14px; padding-left:10px; padding-bottom:10px;">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="collapse" data-target="#sidebar"  style="color:#c8c8c8; height:27px; width:80px; padding:0;">Servers</button>
+
+                    <!--Sidebar-->
+                    <div class="collapse well bs-sidebar" id="sidebar" style="padding:10px;">
+                        <ul class="nav nav-pills nav-fill" style="background-color: #f2f2f2; border-radius: 5px;">
+                            <li style="width:100%;" class="nav-item">
+                                <a target="_blank" class="nav-link" href="https://gm.ip.wustl.edu/ui">Infoblox</a>
+                            </li>
+                            <li style="width:100%;" class="nav-item">
+                                <a target="_blank" class="nav-link" href="https://pan-01.ise.wustl.edu">ISE</a>
+                            </li>
+                            <li style="width:100%;" class="nav-item">
+                                <a target="_blank" class="nav-link" href="https://hoth.soc.wustl.edu">Nagios - Hoth </a>
+                            </li>
+                            <li style="width:100%; " class="nav-item">
+                                <a target="_blank" class="nav-link" href="http://netbrain.net.wustl.edu">NetBrain</a>
+                            </li>
+                            <li style="width:100%; " class="nav-item">
+                                <a target="_blank"  class="nav-link" href="https://gdce-57-wu-fmc-0.nts.wustl.edu/">NGDC FirePower</a>
+                            </li>
+                            <li style="width:100%; " class="nav-item">
+                                <a target="_blank" class="nav-link" href="https://prime.net.wustl.edu">Prime</a>
+                            </li>
+                            <li style="width:100%;" class="nav-item">
+                                <a target="_blank" class="nav-link" href="https://statseeker.nts.wustl.edu">DNF Statseeker</a>
+                            </li>
+                            <li style="width:100%;" class="nav-item">
+                                <a target="_blank" class="nav-link" href="http://10.39.194.46">Med Statseeker</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--horizontal navigation bar-->
+                <div class="col-sm-10" style="background-color:#555; padding-left:0; padding-right:20px; min-width:250px;">
+
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                              <li class="nav-item">
+                                  <a class="nav-link active" href="/">Home</a>
+                              </li>
+                                <li class="nav-item dropdown active">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Network Devices</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/deviceadd/">Add</a>
+                                        <a class="dropdown-item" href="/devicedelete/">Remove</a>
+                                        <a class="dropdown-item" href="/devicedeploy/">Deploy Templates</a>
+                                        <!--<a class="dropdown-item disabled" href="#">Modify</a>
+                                        <a class="dropdown-item disabled" href="#">Search By IP</a>-->
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle disabled" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Firewall Rules</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/deviceadd/">Add</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                        <a class="dropdown-item" href="#">Modify</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Make a Map</a>
+                                </li>
+                                <!--<li class="nav-item active">
+                                    <a class="nav-link" href="/calcpath/">Trace a Path</a>
+                                </li>-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trace a Path</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/calcpath/">Network Trace</a>
+                                        <a class="dropdown-item" href="/calcpathris/">RIS Bandwidth Investigation</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/getclientdetails/">Search for MAC or IP</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/mygroups/">My Groups</a>
+                                </li>
+                            </ul>
+                            <!--<form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button style="color:#c8c8c8;" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>-->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!--script used for sidebar dropdown button-->
+            <script>
+                $(document).ready(function(){
+                $(".dropdown-toggle").dropdown();
+                });
+            </script>
+
+            <!--Main Content-->
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div style="padding-left:24px;" class="col-sm-10">
+                    <p></p>
+                       {% block content %}
+                       {% endblock %}
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container-fluid" style="min-height:93px;background-color:#555; color:#c8c8c8; padding-top:5px">
+                <hr style="width:40%; background-color: #c8c8c8;">
+
+                <center style="padding-bottom:10px; ">©<script type="text/javascript">document.write(new Date().getFullYear());</script> Washington University in St. Louis</center>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "automationportal/header.html" %}
+
+{% block content %}
+<table cellpadding="30px">
+    <tr>
+        <td style="width: 15%">
+         NetBrain Result:
+        </td>
+        <td style = "font-size:6;">
+        {% for item in netbrainResult %}
+          {{ item }}<br/>
+        {% endfor %}
+        </td>
+    </tr>
+</table>
+
+<form action="/calcpath/">
+    <input type="submit" value="Trace Another Path" />
+</form>
+<br/>
+<form action="/">
+    <input type="submit" value="Exit" />
+</form>
+<br/>
+
+{% endblock %}

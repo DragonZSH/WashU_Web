@@ -1,0 +1,62 @@
+{% extends "automationportal/header.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+	<div class="messages">
+		{% for message in messages %}
+			<p style="color:red;" class="{{ message.tags }}">{{ message }}</p>
+			<button onclick="goBack()">Go Back</button>
+
+			<script>
+				function goBack() {
+					window.history.back()
+				}
+			</script>
+		{% endfor %}
+	</div>
+
+{% else %}
+
+	<div class="form-group col-sm-5" style="min-width:100%;">
+		<h3> Deploy Device Template</h3>
+	</div>
+	<br/>
+
+	<div class="form-group col-sm-5" style="min-width:100%;">
+		<form action="/devicedeploy/" id="deviceDeployForm" method="post">
+		    {% csrf_token %}
+		    <table>
+		    {{ form.as_table }}
+		    </table>
+		    <br/>
+		    <input class="input" type="submit" value="submit" onclick="return confirm('Pushing this device will enter the device into TACACS and you will lose console access.  Are you sure you want to continue?')"/>
+		</form>
+		<p></p>
+
+		<div id="loading-indicator" style="display:none; color:gray; ">
+			<h6>Please Wait...</h6>
+			<img src="{% static 'automationportal/img/ajax-loader.gif' %}" />
+		</div>
+
+	</div>
+
+	<br/>
+
+	<div class="col-sm-5" style="min-width:70%;">
+		<p>This form will push the requested templates to the device using Cisco Prime Infrastructure.  Cisco Prime will create a job in the job dashboard that will run immediately, but it may not show up as completed for a few seconds.  It is recommended to log into prime later to check that the job succesfully completed.
+		</p>
+		<p>If you are currently connected to console you will see "Configured from console by cpi on vty0 (10.24.0.128)".
+	</div>
+
+	<script type="text/javascript">
+	     $('#deviceDeployForm').submit(function() {
+	       $('#loading-indicator').show().fadeIn(3000);
+	       return true;
+	     });
+	</script>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "automationportal/header.html" %}
+
+{% block content %}
+<table cellpadding="30px">
+    <tr>
+        <td style="width: 15%">
+         Result:
+        </td>
+        <td style = "font-size:6;">
+            {% for item in netbrainResult %}
+              {{ item }}<br/>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+
+<form action="/getswitchport/">
+    <input type="submit" value="Find Another Port" />
+</form>
+<br/>
+<form action="/">
+    <input type="submit" value="Exit" />
+</form>
+<br/>
+If you receive a Status: 500 error, just refresh the page and it should show up correctly.
+
+{% endblock %}

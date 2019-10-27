@@ -1,0 +1,39 @@
+{% extends "automationportal/header.html" %}
+
+{% block content %}
+
+<table cellpadding="30px">
+    <tr>
+        <td style ="width:5%;">
+         Device Details:
+        </td>
+        <td style ="width:5%;">
+        IP: {{ deviceIp }}<br />
+        </td>
+    </tr>
+    <tr>
+        <td style ="width:5%;">
+         Prime Result:
+        </td>
+        <td style ="width:5%;">
+        See Individual Results
+        </td>
+        <td style ="width: 90%; font-size:6;">
+        {% for item in primeResultList %}
+          {{ item }}
+          <br/>
+        {% endfor %}
+        </td>
+    </tr>
+</table>
+
+<form action="/devicedeploy/">
+    <input type="submit" value="Push Another Template" />
+</form>
+<br/>
+<form action="/">
+    <input type="submit" value="Exit" />
+</form>
+<br/>
+
+{% endblock %}

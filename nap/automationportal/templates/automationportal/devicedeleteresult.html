@@ -1,0 +1,97 @@
+{% extends "automationportal/header.html" %}
+
+{% block content %}
+
+<table cellpadding="30px">
+    <tr>
+        <td style="width: 15%">
+         Device Details:
+        </td>
+        <td style="width:20%">
+        IP: {{ deviceIp }}<br />
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 15%">
+         NetBrain Result:
+        </td>
+        {% if netbrainResult.success == True %}
+            <td style = "color:lime; width:20%;">
+            SUCCESS
+            </td>
+        {% else %}
+            <td style = "color:red; width:20%;">
+            FAILURE
+            </td>
+        {% endif %}
+            <td style = "font-size:6;">
+            {{ netbrainResult }}
+            </td>
+    </tr>
+    <tr>
+        <td style="width: 15%">
+         Prime Result:
+        </td>
+        {% if primeResult.success == True %}
+            <td style = "color:lime; width:20%;">
+            SUCCESS
+            </td>
+        {% else %}
+            <td style = "color:red; width:20%;">
+            FAILURE
+            </td>
+        {% endif %}
+            <td style = "font-size:6;">
+            {{ primeResult }}
+            </td>
+    </tr>
+    <tr>
+        <td style="width: 15%">
+         ISE Result:
+        </td>
+        {% if iseResult.success == True %}
+            <td style = "color:lime; width:20%;">
+            SUCCESS
+            </td>
+        {% else %}
+            <td style = "color:red; width:20%;">
+            FAILURE
+            </td>
+        {% endif %}
+            <td style = "font-size:6;">
+            {{ iseResult }}
+            </td>
+    </tr>
+    <tr>
+        <td style="width: 15%">
+         Statseeker Result:
+        </td>
+        {% if statseekerResult.success == True %}
+            <td style = "color:lime; width:20%;">
+            SUCCESS
+            </td>
+        {% else %}
+            <td style = "color:red; width:20%;">
+            FAILURE
+            </td>
+        {% endif %}
+            <td style = "font-size:6;">
+            {{ statseekerResult }}
+            </td>
+    </tr>
+</table>
+
+<form action="/deviceadd/">
+    <input type="submit" value="Add A Device" />
+</form>
+<br/>
+<form action="/devicedelete/">
+    <input type="submit" value="Remove Another Device" />
+</form>
+<br/>
+<form action="/">
+    <input type="submit" value="Exit" />
+</form>
+<br/>
+
+{% endblock %}

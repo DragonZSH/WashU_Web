@@ -1,0 +1,35 @@
+{% extends "automationportal/header.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+<div class="messages">
+	{% for message in messages %}
+		<p style="color:red;" class="{{ message.tags }}">{{ message }}</p>
+		<button onclick="goBack()">Go Back</button>
+
+		<script>
+			function goBack() {
+				window.history.back()
+			}
+		</script>
+	{% endfor %}
+</div>
+
+{% else %}
+
+<div>
+	<p>This device does not exist.</p>
+	<button onclick="goBack()">Go Back</button>
+
+	<script>
+		function goBack() {
+			window.history.back()
+		}
+	</script>
+</div>
+
+{% endif %}
+
+{% endblock %}

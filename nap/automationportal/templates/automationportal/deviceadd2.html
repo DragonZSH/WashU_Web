@@ -1,0 +1,101 @@
+{% extends "automationportal/header.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+	<div class="messages">
+		{% for message in messages %}
+			<p style="color:red;" class="{{ message.tags }}">{{ message }}</p>
+			<button onclick="goBack()">Go Back</button>
+
+			<script>
+				function goBack() {
+					window.history.back()
+				}
+			</script>
+		{% endfor %}
+	</div>
+
+{% else %}
+
+	<div class="form-group col-sm-5" style="min-width:100%;">
+		<h3> Add Device</h3>
+	</div>
+	<br/>
+
+	<div class="form-group col-sm-5" style="min-width:100%;">
+	{% csrf_token %}
+		<script>
+	    $(document).ready(function(){
+	         $('select#selectcountries').change(function () {
+	             var optionSelected = $(this).find("option:selected");
+	             var valueSelected  = optionSelected.val();
+	             var country_name   = optionSelected.text();
+
+
+	             data = {'cnt' : country_name };
+	             ajax('/getdetails',data,function(result){
+
+	                    console.log(result);
+	                    $("#selectcities option").remove();
+	                    for (var i = result.length - 1; i >= 0; i--) {
+	                        $("#selectcities").append('<option>'+ result[i].name +'</option>');
+	                    };
+
+
+	                 });
+	         });
+	    });
+	</script>
+	<select name="selectcountries" id="selectcountries">
+        {% for item in countries %}
+            <option val="{{ item.name }}"> {{ item.name }} </option>
+        {% endfor %}
+  </select>
+	<select name ="selectcities" id="selectcities">
+
+
+	        </select>
+				<br/>
+		<p></p>
+
+		<div id="loading-indicator" style="display:none; color:gray; ">
+			<h6>Please Wait...this may take a couple minutes</h6>
+			<img src="{% static 'automationportal/img/ajax-loader.gif' %}" />
+		</div>
+
+	</div>
+
+	<br/>
+
+	<div class="col-sm-5" style="min-width:70%;">
+		<p>This form will add the requested device to the following systems:
+			<ul>
+				<li>NetBrain</li>
+				<li>Cisco Prime Infrastructure</li>
+				<li>Cisco Identity Services Engine</li>
+				<li>Statseeker</li>
+			</ul>
+
+			This form has the following assumptions:
+			<ul>
+				<li>The device is reachable</li>
+				<li>The device is configured with WUIT standard TACACS configuration</li>
+				<li>The device is configured with WUIT standard SNMPv2 or SNMPv3 configuration</li>
+				<li>The device is in an existing physical site that is already in ISE, Prime, and NetBrain</li>
+		</ul>
+			Cisco Prime will create a job in the job dashboard that will run immediately, but it may not show up as completed for a few minutes.  It is recommended to log into prime later to check that the device has been succesfully added.  If unique SNMP or AAA credentials are required, it is recommended the devices be added manually.
+		</p>
+	</div>
+
+	<script type="text/javascript">
+	     $('#deviceAddForm').submit(function() {
+	       $('#loading-indicator').show().fadeIn(3000);
+	       return true;
+	     });
+	</script>
+
+{% endif %}
+
+{% endblock %}

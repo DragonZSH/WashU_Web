@@ -1,0 +1,41 @@
+{% extends "automationportal/header.html" %}
+
+{% block content %}
+<table cellpadding="30px">
+    <tr>
+        <td style="width: 15%">
+         Results:
+        </td>
+        <td style = "font-size:6;">
+        {% for item in srcDeviceNameList %}
+          {{ item }}<br/>
+        {% endfor %}
+        </td>
+        <td style = "font-size:6;">
+        {% for item in interfaceList %}
+          {{ item }}<br/>
+        {% endfor %}
+        </td>
+        <td style = "font-size:6;">
+        {% for item in bandwidthList %}
+        {% if item == "100M" or item == "1G" %}
+          <font color = "red">
+        {% else %}
+          <font color = "green">
+        {% endif %}
+          {{ item }}</font><br/>
+        {% endfor %}
+        </td>
+    </tr>
+</table>
+
+<form action="/calcpathris/">
+    <input type="submit" value="Trace Another Path" />
+</form>
+<br/>
+<form action="/">
+    <input type="submit" value="Exit" />
+</form>
+<br/>
+
+{% endblock %}

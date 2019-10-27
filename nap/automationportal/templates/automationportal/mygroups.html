@@ -1,0 +1,237 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Network Automation Portal</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+
+        <!--load css and js files from bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel='stylesheet' href="{% static 'css/main.css' %}" type='text/css'>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+        <style type="text/css">
+            html,
+            body {
+                height:100%
+            }
+        </style>
+    </head>
+
+    <body class="body" style="background-color:#fff">
+
+
+        <!--Main Page Container-->
+        <div class="container-fluid" style="min-height:90%; width:100%; ">
+            <!--Logo Header Bar-->
+            <div class="row">
+                <div class="col-sm-2" style="background-color: #a51417; "></div>
+                <div class="col-sm-10" style="background-color: #a51417; height:43px; ">
+                    <a href="/"><img src="{% static 'automationportal/img/1linerev(RGB).svg' %}" class="responsive-img" style="max-height:36px; padding-top:10px; padding-left:7px;" alt="logo"></a></div>
+            </div>
+            <!--Page Title Header Bar-->
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-9" style="height: 65px;">
+                        <h3 style="padding-top:18px; padding-left:7px; font-family:baskerville">Network Automation Portal</h3></div>
+                <div class="col-sm-1" style="height: 65px; padding-top: 20px; padding-right: 20px; ">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" role="button" onclick="window.location.href='https://connect.wustl.edu/logout/'" style="height:27px; width:80px; padding:0;">Log Out</button></div>
+            </div>
+            <!--Navigation Bar-->
+            <div class="row">
+                <div class="col-sm-2" style="background-color:#555; padding-top:14px; padding-left:10px; padding-bottom:10px; height: 56px; ">
+
+
+                    <!--Sidebar-->
+                    <div class="collapse well bs-sidebar" id="sidebar" style="padding:10px;">
+
+                    </div>
+
+                </div>
+
+                <!--horizontal navigation bar-->
+                <div class="col-sm-10" style="background-color:#555; padding-left:0; padding-right:20px; min-width:250px;">
+
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/">Home</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+
+
+            </div>
+
+
+            <!--Main Content-->
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div style="padding-left:24px;" class="col-sm-9">
+                    <p>
+                    	{% block content %}
+
+                        <table style="border: 1px solid black; text-align: left; padding: 5px; font-size: 16px">
+                        <tr style="border: 1px solid black; padding: 5px; ">
+                            <th style="border: 1px solid black; padding: 5px; ">Service</th>
+                            <!--<th style="border: 1px solid black; padding: 8px; ">Required Groups</th>-->
+                            <th style="border: 1px solid black; padding: 5px; text-align: center; ">Can You Access?</th>
+                            <th style="border: 1px solid black; padding: 5px; ">Which Group(s) Allows This?</th>
+                        </tr>
+                        <tr style="border: 1px solid black; ">
+                            <td style="border: 1px solid black; padding: 5px;  ">
+                                TACACS (Device Login)<br>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://nap.net.wustl.edu">Network Automation Portal</a>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://pan-01.ise.wustl.edu">Cisco ISE</a>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://prime.net.wustl.edu">Cisco Prime</a>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="http://netbrain.net.wustl.edu">NetBrain</a>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://gdce-57-wu-fmc-0.nts.wustl.edu/">NGDC FirePower</a>
+                            </td>
+                            {% if tacacsFind|length == 0 %}
+                                {% if tacacsROFind|length > 0 %}
+                                    <td style="border: 1px solid black; padding: 5px; background-color:#FFBF00; color:black; text-align: center; ">Read Only</td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                        {% for item in tacacsROFind %}
+                                            <p>{{ item }}</p>
+                                        {% endfor %}
+                                {% else %}
+                                    <td style="border: 1px solid black; padding: 5px; background-color:red; color:black; text-align: center; ">No</td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: left; color: red; ">
+                                        You are not a member of the correct group.  Please have your manager request group membership through ServiceNow and assign the request to WUIT-EUS-Access Management.
+                                        <a style="padding:0px;" target="_blank" class="nav-link" href="https://wusm.service-now.com/">Open ServiceNow</a>
+                                {% endif %}
+                                
+                            {% else %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:lime; color:black; text-align: center; ">Yes</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                    {% for item in tacacsFind %}
+                                        <p>{{ item }}</p>
+                                    {% endfor %}
+
+                            {% endif %}
+
+                            </td>
+                        </tr>
+                        <tr style="border: 1px solid black; ">
+                            <td style="border: 1px solid black; padding: 5px;  ">
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://gm.ip.wustl.edu/ui/">Infoblox Admin</a>
+                            </td>
+                            {% if ibxFind|length == 0 %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:red; color:black; text-align: center; ">No</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; color: red; ">
+                                    You are not a member of the correct group.  Please have your manager request group membership through ServiceNow and assign the request to WUIT-EUS-Access Management.
+                                    <a style="padding:0px;" target="_blank" class="nav-link" href="https://wusm.service-now.com/">Open ServiceNow</a>
+
+                            {% else %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:lime; color:black; text-align: center; ">Yes</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                    {% for item in ibxFind %}
+                                        <p>{{ item }}</p>
+                                    {% endfor %}
+
+                            {% endif %}
+
+                            </td>
+                        </tr>
+                        <tr style="border: 1px solid black; ">
+                            <td style="border: 1px solid black; padding: 5px;  ">
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://statseeker.nts.wustl.edu/">Statseeker</a>
+                                <a style="padding: 0px;" target="_blank" class="nav-link" href="https://hoth.soc.wustl.edu/">Nagios - Hoth</a>
+                            </td>
+                                <td style="border: 1px solid black; padding: 5px; background-color:lime; color:black; text-align: center; ">
+                                Yes</td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                Local Login - See KeePass for Password
+                            </td>
+                        </tr>
+                        <tr style="border: 1px solid black; padding: 5px;  ">
+                            <td style="border: 1px solid black; padding: 5px;  ">
+                            VPN (vpn.wustl.edu)
+                            </td>
+                            {% if vpnFind|length == 0 %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:red; color:black; text-align: center; ">No</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; color: red; ">
+                                    You are not a member of the correct group.  Please have your manager request group membership through ServiceNow and assign the request to WUIT-EUS-Access Management.
+                                    <a style="padding:0px;" target="_blank" class="nav-link" href="https://wusm.service-now.com/">Open ServiceNow</a>
+
+                            {% else %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:lime; color:black; text-align: center; ">Yes</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                    {% for item in vpnFind %}
+                                        <p>{{ item }}</p>
+                                    {% endfor %}
+
+                            {% endif %}
+
+                            </td>
+                        </tr>
+                        <tr style="border: 1px solid black; padding: 5px;  ">
+                            <td style="border: 1px solid black; padding: 5px;  ">
+                            MedVPN (msvpn.wusm.wustl.edu)<br>
+                            Only lists accounts domain
+                            </td>
+                            {% if msvpnFind|length == 0 %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:red; color:black; text-align: center; ">No</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; color: red; ">
+                                    You are not a member of the correct group.  Please have your manager request group membership through ServiceNow and assign the request to WUIT-EUS-Access Management.
+                                    <a style="padding:0px;" target="_blank" class="nav-link" href="https://wusm.service-now.com/">Open ServiceNow</a>
+
+                            {% else %}
+                                <td style="border: 1px solid black; padding: 5px; background-color:lime; color:black; text-align: center; ">Yes</td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: left; ">
+                                    {% for item in msvpnFind %}
+                                        <p>{{ item }}</p>
+                                    {% endfor %}
+
+                            {% endif %}
+
+                            </td>
+                        </tr>
+                        </table><br><br>
+
+
+
+                        <table style="border: 1px solid black; text-align: left; padding: 5px; font-size: 16px">
+                            <tr style="border: 1px solid black; padding: 5px; ">
+                                <th style="border: 1px solid black; padding: 5px; ">All Other Groups</th>
+                            </tr>
+                            <tr>
+                                {% for x in diffGroupList %}
+                                    <tr style="border: 1px solid black; padding: 5px;">
+                                        <td style="border: 1px solid black; padding: 5px;" ">
+                                            {{ x }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tr>
+                        </table>
+                        <br>
+
+                        {% endblock %}
+
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container-fluid" style="min-height:93px;background-color:#555; color:#c8c8c8; padding-top:5px">
+                <hr style="width:40%; background-color: #c8c8c8;">
+
+                <center style="padding-bottom:10px; ">©<script type="text/javascript">document.write(new Date().getFullYear());</script> Washington University in St. Louis</center>
+            </div>
+        </footer>
+    </body>
+</html>
